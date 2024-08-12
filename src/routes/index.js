@@ -38,8 +38,6 @@ import {
   JadwalSaya,
   JadwalEdit
 } from '../pages';
-import { colors } from '../utils';
-import { Icon } from 'react-native-elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import BottomNavigator from '../components/BottomNavigator';
 

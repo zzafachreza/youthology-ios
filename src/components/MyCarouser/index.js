@@ -13,7 +13,6 @@ import { colors } from '../../utils/colors';
 import axios from 'axios';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { fonts } from '../../utils/fonts';
-import { Icon } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { apiURL } from '../../utils/localStorage';
 import FastImage from 'react-native-fast-image'

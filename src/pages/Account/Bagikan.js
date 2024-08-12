@@ -11,7 +11,7 @@ import { maskJs, maskCurrency } from 'mask-js';
 import { useToast } from "react-native-toast-notifications";
 import Tiktok from '../../assets/Tiktok.svg'
 import axios from 'axios';
-import { Icon } from 'react-native-elements';
+// import { Icon } from 'react-native-elements';
 export default function Bagikan({ navigation, route }) {
     return (
         <SafeAreaView style={{
@@ -49,7 +49,7 @@ export default function Bagikan({ navigation, route }) {
                     onPress={() => Linking.openURL('https://www.youtube.com/channel/UCuP37QIrgIgEaILL9zyT-fg')}
                     style={styles.btnSocial}
                 >
-                    <Icon type='ionicon' name='logo-youtube' color={Color.white[900]} size={20} />
+                    {/* <Icon type='ionicon' name='logo-youtube' color={Color.white[900]} size={20} /> */}
                     <Text
                         style={styles.textSocial}>
                         Youtube
@@ -60,7 +60,7 @@ export default function Bagikan({ navigation, route }) {
                     onPress={() => Linking.openURL('https://api.whatsapp.com/send/?phone=6287880006776')}
                     style={styles.btnSocial}
                 >
-                    <Icon type='ionicon' name='logo-whatsapp' color={Color.white[900]} size={20} />
+                    {/* <Icon type='ionicon' name='logo-whatsapp' color={Color.white[900]} size={20} /> */}
                     <Text
                         style={styles.textSocial}>
                         Whatsapp

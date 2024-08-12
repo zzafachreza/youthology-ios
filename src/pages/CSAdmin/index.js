@@ -11,7 +11,7 @@ import { maskJs, maskCurrency } from 'mask-js';
 import { useToast } from "react-native-toast-notifications";
 import axios from 'axios';
 import Spinner from 'react-native-spinkit';
-import { Icon } from 'react-native-elements';
+// import { Icon } from 'react-native-elements';
 import { useIsFocused } from '@react-navigation/native';
 import { FlatList } from 'react-native';
 import Modal from "react-native-modal";
@@ -196,7 +196,7 @@ export default function CSAdmin({ navigation, route }) {
                         alignItems: 'center',
                         alignSelf: 'flex-end'
                     }}>
-                        <Icon type='ionicon' name='copy-outline' color={Color.primary[900]} size={20} />
+                        {/* <Icon type='ionicon' name='copy-outline' color={Color.primary[900]} size={20} /> */}
                         <Text style={{
                             ...fonts.body3,
                             marginLeft: 10,
@@ -351,7 +351,8 @@ export default function CSAdmin({ navigation, route }) {
 
                                 flexDirection: 'row'
                             }}>
-                                <Icon type='ionicon' name='bookmark' color={Color.primary[900]} />
+                                <MyIcon name='cosmetic' size={24} color={Color.primary[900]} />
+                                {/* <Icon type='ionicon' name='bookmark' color={Color.primary[900]} /> */}
                                 <Text style={{
                                     flex: 1,
                                     marginLeft: 5,
@@ -363,7 +364,7 @@ export default function CSAdmin({ navigation, route }) {
                         )
                     }} />
                     <MyGap jarak={20} />
-                    <MyPicker iconname='stethoscope' label="Pilih Dokter" onValueChange={x => {
+                    <MyPicker value={kirim.fid_dokter} iconname='stethoscope' label="Pilih Dokter" onValueChange={x => {
                         setKirim({
                             ...kirim,
                             fid_dokter: x
@@ -475,7 +476,9 @@ export default function CSAdmin({ navigation, route }) {
                                 setModalVisible(false)
 
                             }}>
-                                <Icon type='ionicon' size={24} name='close-circle' color={Color.blueGray[400]} />
+
+                                <MyIcon name='close-circle' size={30} color={Color.primary[900]} />
+                                {/* <Icon type='ionicon' size={24} name='close-circle' color={Color.blueGray[400]} /> */}
                             </TouchableOpacity>
 
                         </View>
@@ -506,7 +509,8 @@ export default function CSAdmin({ navigation, route }) {
                                             ...fonts.body3,
                                             color: Color.blueGray[900],
                                         }}>{item.nama_perawatan}</Text>
-                                        <Icon type='ionicon' name={item.cek > 0 ? 'checkmark-circle' : 'checkmark-circle-outline'} color={item.cek > 0 ? Color.primary[900] : Color.blueGray[300]} />
+                                        <MyIcon name={item.cek > 0 ? 'check-circle' : 'cosmetic'} size={30} color={Color.primary[900]} />
+                                        {/* <Icon type='ionicon' name={item.cek > 0 ? 'checkmark-circle' : 'checkmark-circle-outline'} color={item.cek > 0 ? Color.primary[900] : Color.blueGray[300]} /> */}
                                     </TouchableOpacity>
                                 )
                             }} />

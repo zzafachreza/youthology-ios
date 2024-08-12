@@ -7,7 +7,6 @@ import {
   Linking,
   Dimensions,
 } from 'react-native';
-import { Icon } from 'react-native-elements';
 import { Color, colors } from '../../utils/colors';
 import { DimensionThisPhone, fonts } from '../../utils';
 import MyIcon from '../MyIcon';

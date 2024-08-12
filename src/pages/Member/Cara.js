@@ -5,7 +5,7 @@ import { StatusBar } from 'react-native'
 import { apiURL, getData } from '../../utils/localStorage';
 import { MyGap, MyHeader, MyHeaderPoint, MyIcon } from '../../components';
 import moment from 'moment';
-import { Icon } from 'react-native-elements';
+// import { Icon } from 'react-native-elements';
 import axios from 'axios';
 import RenderHtml from 'react-native-render-html';
 import { useIsFocused } from '@react-navigation/native';

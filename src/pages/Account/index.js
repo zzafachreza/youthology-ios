@@ -18,6 +18,7 @@ export default function Account({ navigation, route }) {
     const [user, setUser] = useState({});
     const isFocus = useIsFocused();
     const [loading, setLoading] = useState(true);
+    const [member, setMember] = useState({})
     useEffect(() => {
         if (isFocus) {
             __GetUserProfile();
@@ -32,6 +33,10 @@ export default function Account({ navigation, route }) {
             }).then(res => {
                 console.log(res.data);
                 setUser(res.data);
+                axios.post(apiURL + 'member').then(mem => {
+                    setMember(mem.data.filter(i => i.level == res.data.member)[0]);
+                    storeData('member', mem.data.filter(i => i.level == res.data.member)[0])
+                })
                 setLoading(false);
             })
         })
@@ -82,7 +87,7 @@ export default function Account({ navigation, route }) {
             flex: 1,
             backgroundColor: Color.white[900]
         }}>
-            <MyHeaderPoint title='Akun Saya' />
+            <MyHeaderPoint title='My Account' />
 
             {loading && <MyLoading />}
 
@@ -90,13 +95,10 @@ export default function Account({ navigation, route }) {
                 <View style={{
                     padding: 16
                 }}>
-                    <ImageBackground imageStyle={{ borderRadius: 20 }} style={{
-                        height: 158,
-                        width: '100%',
+                    <View style={{
                         justifyContent: 'center',
                         alignItems: 'center'
-                    }} source={user.member == 'Silver' ? require('../../assets/bgsilver.png') : user.member == 'Gold' ? require('../../assets/bggold.png') : require('../../assets/bgplatinum.png')}>
-
+                    }}>
                         <View style={{
                             flexDirection: 'row'
                         }}>
@@ -121,16 +123,28 @@ export default function Account({ navigation, route }) {
                             }}>
                                 <Text style={{
                                     ...fonts.headline4,
-                                    color: user.member == 'Silver' ? Color.primary[900] : Color.white[900]
+                                    color: Color.primary[900]
                                 }}>{user.nama_lengkap}</Text>
                                 <Text style={{
                                     ...fonts.caption1,
-                                    color: user.member == 'Silver' ? Color.primary[900] : Color.white[900]
+                                    color: Color.primary[900],
                                 }}>Member Since {moment(user.tanggal_daftar).format('DD/MM/YYYY')}</Text>
                             </View>
                         </View>
+                    </View>
+                    <TouchableWithoutFeedback onPress={() => navigation.navigate('Member')}>
+                        <ImageBackground imageStyle={{ borderRadius: 20 }} style={{
+                            height: 160,
+                            width: '100%',
+                            // justifyContent: 'center',
+                            alignItems: 'center'
+                        }} source={{
+                            uri: member.image
+                        }}>
 
-                        <TouchableWithoutFeedback onPress={() => navigation.navigate('Member')}>
+
+
+                            {/* <TouchableWithoutFeedback onPress={() => navigation.navigate('Member')}>
                             <View style={{
                                 marginTop: 16,
                                 height: 35,
@@ -149,10 +163,11 @@ export default function Account({ navigation, route }) {
                                 }}>{user.member}</Text>
                                 <MyIcon size={17} name='round-alt-arrow-right' color={user.member == 'Silver' ? Color.primary[900] : Color.white[900]} />
                             </View>
-                        </TouchableWithoutFeedback>
+                        </TouchableWithoutFeedback> */}
 
 
-                    </ImageBackground>
+                        </ImageBackground>
+                    </TouchableWithoutFeedback>
                 </View>
 
                 <View style={{

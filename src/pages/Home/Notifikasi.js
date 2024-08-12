@@ -5,7 +5,7 @@ import { StatusBar } from 'react-native'
 import { apiURL, getData } from '../../utils/localStorage';
 import { MyEmpty, MyGap, MyHeader, MyHeaderPoint, MyIcon, MyLoading } from '../../components';
 import moment from 'moment';
-import { Icon } from 'react-native-elements';
+// import { Icon } from 'react-native-elements';
 import axios from 'axios';
 import RenderHtml from 'react-native-render-html';
 import { useIsFocused } from '@react-navigation/native';
@@ -207,7 +207,7 @@ export default function Notifikasi({ navigation, route }) {
                                             justifyContent: 'center',
                                             alignItems: 'center'
                                         }}>
-                                            <Icon type='ionicon' size={30} name='trash-outline' color={Color.red[500]} />
+                                            {/* <Icon type='ionicon' size={30} name='trash-outline' color={Color.red[500]} /> */}
                                         </TouchableOpacity>
                                     </View>
                                 )

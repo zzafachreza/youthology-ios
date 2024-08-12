@@ -5,7 +5,7 @@ import { StatusBar } from 'react-native'
 import { apiURL, getData } from '../../utils/localStorage';
 import { MyEmpty, MyGap, MyHeader, MyHeaderPoint, MyIcon, MyLoading } from '../../components';
 import moment from 'moment';
-import { Icon } from 'react-native-elements';
+// import { Icon } from 'react-native-elements';
 import axios from 'axios';
 import RenderHtml from 'react-native-render-html';
 import { useIsFocused } from '@react-navigation/native';
@@ -160,7 +160,7 @@ export default function JadwalSaya({ navigation, route }) {
                                         <View style={{
                                             marginHorizontal: 8,
                                         }}>
-                                            <Icon type='ionicon' name='ellipse' size={6} color={Color.blueGray[400]} />
+                                            {/* <Icon type='ionicon' name='ellipse' size={6} color={Color.blueGray[400]} /> */}
                                         </View>
                                         <MyIcon name='clock-square' size={16} color={Color.blueGray[400]} />
                                         <Text style={{

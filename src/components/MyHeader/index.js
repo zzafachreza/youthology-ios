@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Modal, TouchableWithoutFeedback } from 'react-native';
 import { Color, DimensionThisPhone, MyDimensi, colors, fonts, windowWidth } from '../../utils';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { Icon } from 'react-native-elements';
 import { apiURL, getData } from '../../utils/localStorage';
 import MyIcon from '../MyIcon';
 import axios from 'axios';

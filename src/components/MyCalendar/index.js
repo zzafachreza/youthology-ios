@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Picker } from 'react-native';
-import { Icon, ListItem, Button } from 'react-native-elements';
 import { Color, colors } from '../../utils/colors';
 import { MyDimensi, fonts } from '../../utils/fonts';
 import DatePicker from 'react-native-datepicker'

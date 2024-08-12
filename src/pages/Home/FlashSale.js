@@ -11,7 +11,7 @@ import { MyButton, MyEmpty, MyGap, MyHeader, MyIcon, MyLoading } from '../../com
 import CountDown from 'react-native-countdown-component';
 import MyCarouser from '../../components/MyCarouser';
 import moment from 'moment';
-import { Icon } from 'react-native-elements';
+// import { Icon } from 'react-native-elements';
 import Modal from "react-native-modal";
 import { Toast, useToast } from 'react-native-toast-notifications';
 import axios from 'axios';
@@ -259,7 +259,7 @@ export default function FlashSale({ navigation, route }) {
                                 color: Color.blueGray[900],
                             }}>Detail Voucher</Text>
                             <TouchableOpacity onPress={() => setModalVisible(false)}>
-                                <Icon type='ionicon' size={24} name='close-circle' color={Color.blueGray[400]} />
+                                {/* <Icon type='ionicon' size={24} name='close-circle' color={Color.blueGray[400]} /> */}
                             </TouchableOpacity>
 
                         </View>

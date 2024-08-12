@@ -11,7 +11,7 @@ import { MyButton, MyGap, MyHeader, MyIcon, MyLoading } from '../../components';
 import CountDown from 'react-native-countdown-component';
 import MyCarouser from '../../components/MyCarouser';
 import moment from 'moment';
-import { Icon } from 'react-native-elements';
+// import { Icon } from 'react-native-elements';
 import Modal from "react-native-modal";
 import { Toast, useToast } from 'react-native-toast-notifications';
 import axios from 'axios';
@@ -19,7 +19,6 @@ import { useIsFocused } from '@react-navigation/native';
 import DashedLine from 'react-native-dashed-line';
 import RenderHtml from 'react-native-render-html';
 import FastImage from 'react-native-fast-image'
-import ImageView from 'react-native-image-viewing';
 
 export default function VoucherDetail({
     navigation, route

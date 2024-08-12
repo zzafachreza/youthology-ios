@@ -1,52 +1,64 @@
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native'
-import React from 'react'
-import { AsyncStorage } from '@react-native-async-storage/async-storage';
-import { getData, storeData } from './utils/localStorage';
-import { fonts } from './utils/fonts'
-import MyIcon from './components/MyIcon'
+import 'react-native-gesture-handler';
+import React, { useRef } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import Router from './routes';
+import { LogBox, Text, View } from 'react-native';
+import FlashMessage from 'react-native-flash-message';
+import { Color } from './utils/colors';
+
+import { storeData } from './utils/localStorage';
+import { ToastProvider, useToast } from 'react-native-toast-notifications'
+import { MyIcon } from './components';
+import { fonts } from './utils';
+
 
 export default function App() {
+  LogBox.ignoreAllLogs();
+
+
+  const navigationRef = useRef();
+
+
+
+
   return (
-    <SafeAreaView style={{
-      flex: 1,
-      backgroundColor: 'white',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}>
-      <Text style={{
-        ...fonts.headline2
-      }}>Test</Text>
-
-      <MyIcon name='bell' size={24} />
-
-
-      <TouchableOpacity onPress={() => {
-        let kirim = {
-          nama: 'reza',
-          telepon: '088723'
-        }
-        console.log(kirim)
-        storeData('user', kirim)
-      }} style={{
-        padding: 10,
-        backgroundColor: 'yellow'
-      }}>
-        <Text>Simpan async</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => {
-        getData('user').then(uu => {
-          console.log(uu)
-        })
-      }} style={{
-        marginTop: 20,
-        padding: 10,
-        backgroundColor: 'orange'
-      }}>
-        <Text>Lihat data</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
-  )
+    <NavigationContainer ref={navigationRef}>
+      <ToastProvider
+        duration={2000}
+        placement="bottom"
+        animationDuration={250}
+        animationType='zoom-in'
+        successColor={Color.blueGray[50]}
+        successIcon={<MyIcon name='check-circle' color={Color.tealGreen[500]} size={24} />}
+        dangerColor={<MyIcon name='close-circle' color={Color.tealGreen[500]} size={24} />}
+        renderToast={(toast) => {
+          return (
+            <View style={{
+              backgroundColor: Color.blueGray[50],
+              padding: 10,
+              width: '85%',
+              borderRadius: 10,
+              borderWidth: 1,
+              borderColor: Color.blueGray[100],
+              flexDirection: 'row',
+            }}>
+              {toast.type == 'success' ? <MyIcon name='check-circle' color={Color.tealGreen[500]} size={24} /> : toast.type == 'warning' ? <MyIcon name='info-circle' color={Color.blueGray[400]} size={24} /> : <MyIcon name='close-circle' color={Color.red[500]} size={24} />}
+              <Text style={{
+                left: 10,
+                flex: 1,
+                ...fonts.body3,
+                color: Color.primary[900]
+              }}>{toast.message}</Text>
+              {/* <Pressable>
+                <Icon type='ionicon' name='close' color={Color.blueGray[400]} />
+              </Pressable> */}
+            </View>
+          )
+        }}
+      >
+        <Router />
+      </ToastProvider>
+      <FlashMessage position="bottom" />
+    </NavigationContainer>
+  );
 }
-
-const styles = StyleSheet.create({})

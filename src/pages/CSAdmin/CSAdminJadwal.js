@@ -10,8 +10,7 @@ import DatePicker from 'react-native-datepicker'
 import { maskJs, maskCurrency } from 'mask-js';
 import { useToast } from "react-native-toast-notifications";
 import axios from 'axios';
-import RNDateTimePicker from '@react-native-community/datetimepicker';
-import { Picker } from 'react-native-wheel-pick';
+// import { Picker } from 'react-native-wheel-pick';
 
 export default function CSAdminJadwal({ navigation, route }) {
     const toast = useToast();
@@ -31,10 +30,18 @@ export default function CSAdminJadwal({ navigation, route }) {
             fid_dokter: route.params.fid_dokter,
             tanggal_janji: x
         }).then(res => {
-            console.log(res.data);
+            console.log(res.data.data);
+
 
             if (res.data.data.length > 0) {
-                setWaktu(res.data.data);
+
+                let WKT = [];
+
+                res.data.data.map(i => {
+                    WKT.push({ value: i, label: i })
+                });
+
+                setWaktu(WKT)
                 setInfo(res.data.informasi);
             } else {
                 setInfo(res.data.informasi);
@@ -122,12 +129,12 @@ export default function CSAdminJadwal({ navigation, route }) {
 
                     />
                     <MyGap jarak={20} />
-                    {waktu.length > 0 &&
+                    {/* {waktu.length > 0 &&
                         <Text style={{
                             ...fonts.headline4,
                             color: Color.blueGray[900]
                         }}>Pilih Jam Perawatan</Text>
-                    }
+                    } */}
 
                     {info.length > 0 &&
 
@@ -142,21 +149,28 @@ export default function CSAdminJadwal({ navigation, route }) {
                     {!loading && <>
 
                         {waktu.length > 0 &&
-                            <Picker
-                                style={{ backgroundColor: Color.white[900], width: '100%', height: 200 }}
-                                selectedValue={kirim.jam_janji}
-                                textSize={30}
-                                pickerData={waktu}
-                                selectLineSize={6}
-                                isShowSelectBackground={true}
-                                selectTextColor={Color.blueGray[900]}
-                                selectBackgroundColor={Color.primary[50] + 'AA'}
-                                // selectLineColor={Color.primary[50]}
-                                onValueChange={value => setKirim({
+                            // <Picker
+                            //     style={{ backgroundColor: Color.white[900], width: '100%', height: 200 }}
+                            //     selectedValue={kirim.jam_janji}
+                            //     textSize={30}
+                            //     pickerData={waktu}
+                            //     selectLineSize={6}
+                            //     isShowSelectBackground={true}
+                            //     selectTextColor={Color.blueGray[900]}
+                            //     selectBackgroundColor={Color.primary[50] + 'AA'}
+                            //     // selectLineColor={Color.primary[50]}
+                            //     onValueChange={value => setKirim({
+                            //         ...kirim,
+                            //         jam_janji: value
+                            //     })}
+                            // />
+
+                            <MyPicker iconname='clock-square' label="Pilih Jam Perawatan" onValueChange={x => {
+                                setKirim({
                                     ...kirim,
-                                    jam_janji: value
-                                })}
-                            />
+                                    jam_janji: x
+                                })
+                            }} data={waktu} />
                         }
                         {/* <View style={{
                             marginVertical: 4,

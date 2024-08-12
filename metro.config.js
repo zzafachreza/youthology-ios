@@ -9,6 +9,7 @@ module.exports = (async () => {
       ...(process.env.NO_FLIPPER
         ? { 'react-native-flipper': { platforms: { ios: null } } }
         : {}),
+
     },
     transformer: {
       babelTransformerPath: require.resolve("react-native-svg-transformer")

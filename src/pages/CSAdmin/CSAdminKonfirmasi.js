@@ -11,7 +11,7 @@ import { maskJs, maskCurrency } from 'mask-js';
 import { useToast } from "react-native-toast-notifications";
 import axios from 'axios';
 import Modal from "react-native-modal";
-import { Icon } from 'react-native-elements';
+// import { Icon } from 'react-native-elements';
 import KonfirmasiOrder from '../../assets/KonfirmasiOrder.svg'
 
 export default function CSAdminKonfirmasi({ navigation, route }) {
@@ -98,7 +98,7 @@ export default function CSAdminKonfirmasi({ navigation, route }) {
                                             flexDirection: 'row',
                                             alignItems: 'center'
                                         }}>
-                                            <Icon type='ionicon' name='bookmark' color={Color.blueGray[900]} size={14} />
+                                            {/* <Icon type='ionicon' name='bookmark' color={Color.blueGray[900]} size={14} /> */}
                                             <Text style={{
                                                 marginLeft: 5,
                                                 ...fonts.headline5,
@@ -421,7 +421,7 @@ export default function CSAdminKonfirmasi({ navigation, route }) {
                                 color: Color.blueGray[900],
                             }}>Konfirmasi Tindakan</Text>
                             <TouchableOpacity onPress={() => setModalVisible(false)}>
-                                <Icon type='ionicon' size={24} name='close-circle' color={Color.blueGray[400]} />
+                                {/* <Icon type='ionicon' size={24} name='close-circle' color={Color.blueGray[400]} /> */}
                             </TouchableOpacity>
 
                         </View>

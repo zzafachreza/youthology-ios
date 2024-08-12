@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { DimensionThisPhone, fonts, windowWidth, } from '../../utils/fonts';
-import { Icon } from 'react-native-elements';
 import { Color, colors } from '../../utils';
 
 export default function MyButton({

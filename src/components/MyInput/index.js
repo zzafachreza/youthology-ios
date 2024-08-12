@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
-import { Icon } from 'react-native-elements';
+
 import { Color, colors } from '../../utils/colors';
 import { fonts } from '../../utils/fonts';
 import MyIcon from '../MyIcon';
@@ -45,6 +45,7 @@ export default function MyInput({
       }}>{label}</Text>
       <View style={{
         height: 50,
+
       }}>
         <View style={{
           position: 'absolute',

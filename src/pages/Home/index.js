@@ -11,13 +11,13 @@ import { MyButton, MyGap, MyIcon, MyLoading } from '../../components';
 import CountDown from 'react-native-countdown-component';
 import MyCarouser from '../../components/MyCarouser';
 import moment from 'moment';
-import { Icon } from 'react-native-elements';
+// import { Icon } from 'react-native-elements';
 import Modal from "react-native-modal";
 import { Toast, useToast } from 'react-native-toast-notifications';
 import axios from 'axios';
 import { useIsFocused } from '@react-navigation/native';
-import messaging from '@react-native-firebase/messaging';
-import PushNotification, { Importance } from 'react-native-push-notification';
+// import messaging from '@react-native-firebase/messaging';
+// import PushNotification, { Importance } from 'react-native-push-notification';
 import FastImage from 'react-native-fast-image'
 export default function Home({ navigation, route }) {
 
@@ -26,6 +26,7 @@ export default function Home({ navigation, route }) {
   const [user, setUser] = useState({
     nama_lengkap: 'Nama Saya'
   });
+  const [member, setMember] = useState({});
   const [isModalVisible2, setModalVisible2] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -61,47 +62,49 @@ export default function Home({ navigation, route }) {
       __getPoinHarian();
     }
 
-    const unsubscribe = messaging().onMessage(async remoteMessage => {
-
-      const json = JSON.stringify(remoteMessage.notification);
-      const obj = JSON.parse(json);
-
-      console.log('remote message', remoteMessage);
-
-      // alert(obj.notification.title)
-      PushNotification.localNotification({
-        /* Android Only Properties */
-        channelId: 'YouthologyID', // (required) channelId, if the channel doesn't exist, notification will not trigger.
-        title: obj.title, // (optional)
-        message: obj.body, // (required)
-        vibrate: true,
-      });
-
-      getFalshSale();
 
 
-    });
+    // const unsubscribe = messaging().onMessage(async remoteMessage => {
 
-    messaging().setBackgroundMessageHandler(async remoteMessage => {
+    //   const json = JSON.stringify(remoteMessage.notification);
+    //   const obj = JSON.parse(json);
 
-      const json = JSON.stringify(remoteMessage.notification);
-      const obj = JSON.parse(json);
+    //   console.log('remote message', remoteMessage);
 
-      console.log('remote message', remoteMessage);
+    //   // alert(obj.notification.title)
+    //   PushNotification.localNotification({
+    //     /* Android Only Properties */
+    //     channelId: 'YouthologyID', // (required) channelId, if the channel doesn't exist, notification will not trigger.
+    //     title: obj.title, // (optional)
+    //     message: obj.body, // (required)
+    //     vibrate: true,
+    //   });
 
-      PushNotification.localNotification({
-        /* Android Only Properties */
-        priority: 'high',
-        importance: Importance.HIGH,
-        channelId: 'YouthologyIDBCK', // (required) channelId, if the channel doesn't exist, notification will not trigger.
-        title: obj.title, // (optional)
-        message: obj.body, // (required)
-
-      });
-    });
+    //   getFalshSale();
 
 
-    return unsubscribe;
+    // });
+
+    // messaging().setBackgroundMessageHandler(async remoteMessage => {
+
+    //   const json = JSON.stringify(remoteMessage.notification);
+    //   const obj = JSON.parse(json);
+
+    //   console.log('remote message', remoteMessage);
+
+    //   PushNotification.localNotification({
+    //     /* Android Only Properties */
+    //     priority: 'high',
+    //     importance: Importance.HIGH,
+    //     channelId: 'YouthologyIDBCK', // (required) channelId, if the channel doesn't exist, notification will not trigger.
+    //     title: obj.title, // (optional)
+    //     message: obj.body, // (required)
+
+    //   });
+    // });
+
+
+    // return unsubscribe;
 
 
   }, [isFocus]);
@@ -116,10 +119,13 @@ export default function Home({ navigation, route }) {
   }
 
 
+
+
+
   const [FLASHSALE, setFALSHSALE] = useState(0);
   const getFalshSale = () => {
     axios.post(apiURL + 'get_flash_sale').then(res => {
-      console.log('FLASH SALE', res.data)
+
       setFALSHSALE(parseInt(res.data));
     })
   }
@@ -137,7 +143,7 @@ export default function Home({ navigation, route }) {
           // alert(token.token);
 
           if (token.token !== res.data) {
-            console.log('update TOKEN');
+
             axios.post(apiURL + 'update_token', {
               id: uu.id,
               token: token.token
@@ -201,6 +207,11 @@ export default function Home({ navigation, route }) {
         })
         storeData('user', res.data)
         setUser(res.data);
+
+        axios.post(apiURL + 'member').then(mem => {
+          setMember(mem.data.filter(i => i.level == res.data.member)[0]);
+          storeData('member', mem.data.filter(i => i.level == res.data.member)[0])
+        })
       })
     })
   }
@@ -262,7 +273,7 @@ export default function Home({ navigation, route }) {
           alignItems: 'center'
         }}>
           <TouchableOpacity onPress={() => navigation.navigate('Account')}>
-            <Image source={{
+            <FastImage source={{
               uri: user.foto_user
             }} style={{
               width: 40,
@@ -283,13 +294,19 @@ export default function Home({ navigation, route }) {
           justifyContent: 'space-between',
           alignItems: 'center'
         }}>
-          <TouchableOpacity onPress={() => navigation.navigate('Member')}>
-            <Image source={user.member == 'Silver' ? require('../../assets/badgeSilver.png') : user.member == 'Gold' ? require('../../assets/badgeGold.png') : require('../../assets/badgePlatinum.png')} style={{
-              width: 100,
-              resizeMode: 'contain',
+
+          {/* fitur baru */}
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('Member')}>
+            <FastImage source={{
+              uri: member.image
+            }} style={{
+              width: 90,
+              borderRadius: 5,
               height: 35
             }} />
-          </TouchableOpacity>
+
+          </TouchableWithoutFeedback>
+
           <TouchableOpacity onPress={() => navigation.navigate('Notifikasi')} style={{
             width: 40,
             height: 40,
@@ -520,7 +537,7 @@ export default function Home({ navigation, route }) {
                       <View style={{
                         marginHorizontal: 8,
                       }}>
-                        <Icon type='ionicon' name='ellipse' size={6} color={Color.blueGray[400]} />
+                        {/* <Icon type='ionicon' name='ellipse' size={6} color={Color.blueGray[400]} /> */}
                       </View>
                       <MyIcon name='clock-square' size={16} color={Color.blueGray[400]} />
                       <Text style={{
@@ -693,7 +710,7 @@ export default function Home({ navigation, route }) {
           }} style={{
             padding: 10,
           }}>
-            <Icon type='ionicon' name='close-circle' size={60} color={Color.white[900]} />
+            {/* <Icon type='ionicon' name='close-circle' size={60} color={Color.white[900]} /> */}
           </TouchableOpacity>
         </View>
       </Modal>
@@ -731,7 +748,7 @@ export default function Home({ navigation, route }) {
                 setModalVisible(false)
 
               }}>
-                <Icon type='ionicon' size={24} name='close-circle' color={Color.blueGray[400]} />
+                {/* <Icon type='ionicon' size={24} name='close-circle' color={Color.blueGray[400]} /> */}
               </TouchableOpacity>
 
             </View>

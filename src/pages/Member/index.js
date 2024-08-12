@@ -5,13 +5,14 @@ import { StatusBar } from 'react-native'
 import { apiURL, getData, storeData } from '../../utils/localStorage';
 import { MyButton, MyGap, MyHeader, MyHeaderPoint, MyIcon, MyLoading } from '../../components';
 import moment from 'moment';
-import { Icon } from 'react-native-elements';
+// import { Icon } from 'react-native-elements';
 import axios from 'axios';
 import { useIsFocused } from '@react-navigation/native';
 import DashedLine from 'react-native-dashed-line';
 import RenderHtml from 'react-native-render-html';
 import Modal from "react-native-modal";
 import { useToast } from 'react-native-toast-notifications';
+import FastImage from 'react-native-fast-image';
 
 export default function Member({ navigation, route }) {
     const [isModalVisiblePoin, setModalVisiblePoin] = useState(false);
@@ -23,22 +24,9 @@ export default function Member({ navigation, route }) {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
     const isFocus = useIsFocused();
-    const [data, setData] = useState([
-        {
-            level: 'Silver',
-            keuntungan: '',
-        },
-        {
-            level: 'Gold',
-            keuntungan: '',
-        },
-        {
-            level: 'Platinum',
-            keuntungan: '',
-        }
-    ]);
+    const [data, setData] = useState([]);
     const [tmp, setTmp] = useState([]);
-    const [cek, setCek] = useState('Silver')
+    const [cek, setCek] = useState('')
     const [dataVoucher, setDataVoucher] = useState([]);
     useEffect(() => {
         if (isFocus) {
@@ -101,7 +89,8 @@ export default function Member({ navigation, route }) {
                 setDataCek({
                     cekin: res.data.cekin,
                     dayin: res.data.dayin,
-                })
+                });
+                setCek(res.data.member)
                 storeData('user', res.data)
                 setUser(res.data);
             })
@@ -172,135 +161,122 @@ export default function Member({ navigation, route }) {
                     flex: 1,
                     padding: 16,
                 }}>
-                    <View style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-around'
-                    }}>
-                        <TouchableOpacity onPress={() => {
-                            setCek('Silver')
-                        }} style={{
-                            height: 35,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            borderWidth: 1,
-                            borderColor: cek == 'Silver' ? Color.primary[900] : Color.blueGray[400],
-                            backgroundColor: cek == 'Silver' ? Color.primary[50] : Color.white[900],
-                            width: 100,
-                            borderRadius: 12,
-                        }}>
-                            <Text style={{
-                                ...fonts.subheadline3,
-                                color: Color.primary[900]
-                            }}>Silver</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => {
-                            setCek('Gold')
-                        }} style={{
-                            height: 35,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            borderWidth: 1,
-                            borderColor: cek == 'Gold' ? Color.primary[900] : Color.blueGray[400],
-                            backgroundColor: cek == 'Gold' ? Color.primary[50] : Color.white[900],
-                            width: 100,
-                            borderRadius: 12,
-                        }}>
-                            <Text style={{
-                                ...fonts.subheadline3,
-                                color: Color.primary[900]
-                            }}>Gold</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => {
-                            setCek('Platinum')
-                        }} style={{
-                            height: 35,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            borderWidth: 1,
-                            borderColor: cek == 'Platinum' ? Color.primary[900] : Color.blueGray[400],
-                            backgroundColor: cek == 'Platinum' ? Color.primary[50] : Color.white[900],
-                            width: 100,
-                            borderRadius: 12,
-                        }}>
-                            <Text style={{
-                                ...fonts.subheadline3,
-                                color: Color.primary[900]
-                            }}>Platinum</Text>
-                        </TouchableOpacity>
-                    </View>
 
-                    <View style={{
-                        borderRadius: 12,
-                        overflow: 'hidden',
-                        padding: 16,
-                    }}>
-                        <ScrollView showsVerticalScrollIndicator={false}>
-                            <ImageBackground imageStyle={{ borderRadius: 20 }} style={{
-                                height: 158,
-                                width: '100%',
-                                height: 146,
-                                width: '100%',
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }} source={cek == 'Silver' ? require('../../assets/bgsilver.png') : cek == 'Gold' ? require('../../assets/bggold.png') : require('../../assets/bgplatinum.png')}>
+                    <View>
+                        <FlatList contentContainerStyle={{
 
-                                <View style={{
-                                    flexDirection: 'row',
-                                    alignItems: 'center'
+                        }} showsHorizontalScrollIndicator={false} horizontal data={data} renderItem={({ item, index }) => {
+                            return (
+                                <TouchableOpacity onPress={() => {
+                                    setCek(item.level)
+                                }} style={{
+                                    marginRight: 8,
+                                    height: 35,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    borderWidth: 1,
+                                    borderColor: cek == item.level ? Color.primary[900] : Color.blueGray[400],
+                                    backgroundColor: cek == item.level ? Color.primary[50] : Color.white[900],
+                                    width: 100,
+                                    borderRadius: 12,
                                 }}>
-                                    <MyIcon size={40} name='gift' color={cek == 'Silver' ? Color.primary[900] : Color.white[900]} />
-                                    <View style={{
-                                        marginLeft: 8,
-                                    }}>
-
-                                        <Text style={{
-                                            ...fonts.caption1,
-                                            color: cek == 'Silver' ? Color.primary[900] : Color.white[900]
-                                        }}>{cek == user.member ? 'Level Saat Ini' : cek == 'Silver' && user.member == 'Gold' ? 'Level Terlewati' : cek == 'Platinum' && user.member == 'Gold' ? 'Level Terkunci' : cek == 'Gold' && user.member == 'Silver' ? 'Level Terkunci' : cek == 'Platinum' && user.member == 'Silver' ? 'Level Terkunci' : cek == 'Gold' && user.member == 'Platinum' ? 'Level Terkewati' : cek == 'Silver' && user.member == 'Platinum' ? 'Level Terkewati' : ''}</Text>
-                                        <Text style={{
-                                            ...fonts.headline4,
-                                            color: cek == 'Silver' ? Color.primary[900] : Color.white[900]
-                                        }}>{cek}</Text>
-                                    </View>
-                                </View>
-
-
-                            </ImageBackground>
-
-                            <Image source={user.member == 'Silver' ? require('../../assets/barsilver.png') : user.member == 'Gold' ? require('../../assets/bargold.png') : require('../../assets/barplatinum.png')} style={{
-                                marginTop: 10,
-                                marginBottom: 10,
-                                width: '100%',
-                                height: 30,
-                                resizeMode: 'contain'
-                            }} />
-
-
-                            <Text style={{
-                                ...fonts.headline5,
-                            }}>Keuntungan Level {cek}</Text>
-
-
-                            <RenderHtml
-                                tagsStyles={{
-                                    p: {
-                                        fontFamily: fonts.body3.fontFamily,
-                                        textAlign: 'justify',
-                                        lineHeight: 26,
-                                    },
-                                }}
-                                systemFonts={systemFonts}
-                                contentWidth={windowWidth}
-                                source={{
-                                    html: data.filter(i => i.level == cek)[0].keuntungan
-                                }}
-                            />
-                            <MyButton title="Tukarkan Reward" onPress={() => navigation.navigate('Tukar')} />
-                            <MyGap jarak={30} />
-                        </ScrollView>
-
-
+                                    <Text style={{
+                                        ...fonts.subheadline3,
+                                        color: Color.primary[900]
+                                    }}>{item.level}</Text>
+                                </TouchableOpacity>
+                            )
+                        }} />
                     </View>
+
+
+
+                    {cek.length > 0 && data.length > 0 &&
+
+                        <View style={{
+                            flex: 1,
+                            borderRadius: 12,
+                            overflow: 'hidden',
+                            paddingHorizontal: 16,
+                            paddingTop: 10,
+                        }}>
+                            <FastImage source={{
+                                uri: data.filter(i => i.level == cek)[0].image
+                            }} style={{
+                                width: windowWidth,
+                                height: windowWidth / 2,
+                                borderRadius: 10,
+                                alignSelf: 'center',
+
+                            }} resizeMode={FastImage.resizeMode.contain} />
+
+                            <View style={{
+                                marginVertical: 10,
+                                flexDirection: 'row'
+                            }}>
+                                {data.map(i => {
+                                    return (
+                                        <View style={{
+                                            backgroundColor: Color.primary[900],
+                                            // marginRight: 10,
+                                            flex: 1,
+                                            flexDirection: 'row',
+                                            position: 'relative',
+                                            // justifyContent: 'flex-start',
+                                            justifyContent: 'center',
+                                            height: 5,
+
+                                        }}>
+                                            <View style={{
+                                                marginTop: -7,
+                                                // position: 'absolute',
+                                                backgroundColor: Color.secondary[900],
+                                                borderRadius: 10,
+                                                borderWidth: 2,
+                                                borderColor: Color.blueGray[300],
+                                                width: 20,
+                                                height: 20,
+                                                justifyContent: 'center',
+                                                alignItems: 'center'
+                                            }}>
+                                                {/* <Icon color={i.level == user.member ? Color.primary[900] : Color.white[900]} type='ionicon' name='ellipse' size={14} /> */}
+                                            </View>
+                                        </View>
+                                    )
+                                })}
+                            </View>
+
+                            <ScrollView showsVerticalScrollIndicator={false}>
+
+
+
+
+                                <Text style={{
+                                    ...fonts.headline5,
+                                }}>Keuntungan Level {cek}</Text>
+
+
+                                <RenderHtml
+                                    tagsStyles={{
+                                        p: {
+                                            fontFamily: fonts.body3.fontFamily,
+                                            textAlign: 'justify',
+                                            lineHeight: 26,
+                                        },
+                                    }}
+                                    systemFonts={systemFonts}
+                                    contentWidth={windowWidth}
+                                    source={{
+                                        html: data.filter(i => i.level == cek)[0].keuntungan
+                                    }}
+                                />
+                                <MyButton title="Tukarkan Reward" onPress={() => navigation.navigate('Tukar')} />
+                                <MyGap jarak={30} />
+
+                            </ScrollView>
+
+                        </View>
+                    }
 
 
                 </View>
@@ -517,7 +493,7 @@ export default function Member({ navigation, route }) {
                                 color: Color.blueGray[900],
                             }}>Detail Voucher</Text>
                             <TouchableOpacity onPress={() => setModalVisible(false)}>
-                                <Icon type='ionicon' size={24} name='close-circle' color={Color.blueGray[400]} />
+                                {/* <Icon type='ionicon' size={24} name='close-circle' color={Color.blueGray[400]} /> */}
                             </TouchableOpacity>
 
                         </View>
@@ -734,7 +710,7 @@ export default function Member({ navigation, route }) {
                                 setModalVisiblePoin(false)
 
                             }}>
-                                <Icon type='ionicon' size={24} name='close-circle' color={Color.blueGray[400]} />
+                                {/* <Icon type='ionicon' size={24} name='close-circle' color={Color.blueGray[400]} /> */}
                             </TouchableOpacity>
 
                         </View>

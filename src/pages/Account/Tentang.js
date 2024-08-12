@@ -11,7 +11,7 @@ import { maskJs, maskCurrency } from 'mask-js';
 import { useToast } from "react-native-toast-notifications";
 import axios from 'axios';
 import Modal from "react-native-modal";
-import { Icon } from 'react-native-elements';
+// import { Icon } from 'react-native-elements';
 export default function Tentang({ navigation, route }) {
     const [comp, setComp] = useState({});
     const [loading, setLoading] = useState(true)
