@@ -133,7 +133,9 @@ export default function Register({ navigation, route }) {
                         borderRadius: 20,
                     }}>
                         {/* Nama Lengkap */}
-                        <View>
+                        <View style={{
+
+                        }}>
                             <Text style={{
                                 ...fonts.subheadline3,
                                 color: Color.blueGray[900],
@@ -162,6 +164,7 @@ export default function Register({ navigation, route }) {
                                     paddingHorizontal: 12,
                                     color: Color.blueGray[900],
                                     borderWidth: 1,
+                                    paddingBottom: 10,
                                     borderRadius: 8,
                                     borderColor: Color.blueGray[300]
                                 }} />
@@ -208,6 +211,7 @@ export default function Register({ navigation, route }) {
                                     paddingHorizontal: 12,
                                     color: Color.blueGray[900],
                                     borderWidth: 1,
+                                    paddingBottom: 10,
                                     borderTopRightRadius: 8,
                                     borderBottomRightRadius: 8,
                                     borderColor: Color.blueGray[300]
@@ -248,6 +252,7 @@ export default function Register({ navigation, route }) {
                                     flex: 1,
                                     paddingLeft: 44,
                                     height: 50,
+                                    paddingBottom: 10,
                                     paddingHorizontal: 12,
                                     color: Color.blueGray[900],
                                     borderWidth: 1,
@@ -284,6 +289,7 @@ export default function Register({ navigation, route }) {
                                     ...fonts.body3,
                                     flex: 1,
                                     paddingLeft: 44,
+                                    paddingBottom: 10,
                                     height: 50,
                                     paddingHorizontal: 12,
                                     color: Color.blueGray[900],
@@ -349,6 +355,7 @@ export default function Register({ navigation, route }) {
                                     ...fonts.body3,
                                     flex: 1,
                                     height: 50,
+                                    paddingBottom: 10,
                                     paddingHorizontal: 12,
                                     color: Color.blueGray[900],
                                     borderWidth: 1,
@@ -405,6 +412,7 @@ export default function Register({ navigation, route }) {
                                     paddingHorizontal: 12,
                                     color: Color.blueGray[900],
                                     borderWidth: 1,
+                                    paddingBottom: 10,
                                     borderRadius: 8,
                                     borderColor: !sama ? Color.red[500] : Color.blueGray[300]
                                 }} />

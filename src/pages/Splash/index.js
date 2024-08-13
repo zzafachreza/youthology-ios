@@ -24,21 +24,18 @@ export default function Splash({ navigation, route }) {
   }, [])
 
   return (
-    <SafeAreaView style={{
+    <ImageBackground source={require('../../assets/bg.png')} style={{
       flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
     }}>
-      <StatusBar hidden backgroundColor={Color.primary[900]} barStyle="light-content" />
-      <ImageBackground source={require('../../assets/bg.png')} style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-        <Image source={require('../../assets/logo.png')} style={{
-          width: 200,
-          height: 200,
-        }} />
-      </ImageBackground>
-    </SafeAreaView>
+      <StatusBar barStyle="light-content" />
+      <Image source={require('../../assets/logo.png')} style={{
+        width: 200,
+        height: 200,
+      }} />
+    </ImageBackground>
+
   )
 }
 

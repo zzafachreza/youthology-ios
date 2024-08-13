@@ -165,7 +165,7 @@ export default function CSAdminJadwal({ navigation, route }) {
                             //     })}
                             // />
 
-                            <MyPicker iconname='clock-square' label="Pilih Jam Perawatan" onValueChange={x => {
+                            <MyPicker value={kirim.jam_janji} iconname='clock-square' label="Pilih Jam Perawatan" onValueChange={x => {
                                 setKirim({
                                     ...kirim,
                                     jam_janji: x

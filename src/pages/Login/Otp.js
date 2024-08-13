@@ -78,6 +78,7 @@ export default function Otp({ navigation, route }) {
 
                     tintColor={Color.primary[900]}
                     textInputStyle={{
+                        paddingBottom: 10,
                         backgroundColor: Color.white[900],
                         borderWidth: 1,
                         borderColor: Color.blueGray[300],

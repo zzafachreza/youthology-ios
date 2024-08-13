@@ -38,7 +38,8 @@ export default function MyPicker({
       </Text>
 
       <View style={{
-        // borderWidth: 1,
+        borderWidth: 1,
+        height: 200,
         borderRadius: 8,
         borderColor: Color.blueGray[300]
       }}>
@@ -49,7 +50,7 @@ export default function MyPicker({
         }}>
           <MyIcon name={iconname} color={Color.blueGray[300]} size={24} />
         </View>
-        <Picker mode='dropdown' style={{ height: 214, width: '90%', height: 50, left: 40, transform: [{ scale: 1 }] }}
+        <Picker mode='dropdown' style={{ height: 200, width: '90%', height: 50, left: 40, transform: [{ scale: 1 }] }}
           selectedValue={value} onValueChange={onValueChange}>
           {data.map(item => {
             return <Picker.Item textStyle={{ fontSize: 12, ...fonts.body3, color: Color.blueGray[900], }} value={item.value} label={item.label} />;

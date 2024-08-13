@@ -177,6 +177,7 @@ export default function EditAccount({ navigation, route }) {
                                 paddingHorizontal: 12,
                                 color: Color.blueGray[900],
                                 borderWidth: 1,
+                                paddingBottom: 10,
                                 borderTopRightRadius: 8,
                                 borderBottomRightRadius: 8,
                                 borderColor: Color.blueGray[300]

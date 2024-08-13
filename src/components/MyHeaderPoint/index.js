@@ -7,7 +7,7 @@ import MyIcon from '../MyIcon';
 import axios from 'axios';
 import FastImage from 'react-native-fast-image'
 
-export default function MyHeaderPoint({ title = 'CS Admin', level }) {
+export default function MyHeaderPoint({ title = 'Booking', level }) {
     const navigation = useNavigation();
     // const [user, setUser] = useState({
     //     nama_lengkap: 'Nama Saya'

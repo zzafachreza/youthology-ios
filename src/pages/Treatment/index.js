@@ -70,7 +70,7 @@ export default function Treatment({ navigation, route }) {
             flex: 1,
             backgroundColor: Color.white[900],
         }}>
-            <MyHeaderPoint title='Perawatan' />
+            <MyHeaderPoint title='Treatment' />
 
             {!loading && <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={{

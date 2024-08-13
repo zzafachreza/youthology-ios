@@ -125,6 +125,7 @@ export default function Login({ navigation, route }) {
                   paddingHorizontal: 12,
                   color: Color.blueGray[900],
                   borderWidth: 1,
+                  paddingBottom: 10,
                   borderTopRightRadius: 8,
                   borderBottomRightRadius: 8,
                   borderColor: Color.blueGray[300]
@@ -155,6 +156,7 @@ export default function Login({ navigation, route }) {
                   color: Color.blueGray[900],
                   borderWidth: 1,
                   borderRadius: 8,
+                  paddingBottom: 10,
                   borderColor: Color.blueGray[300]
                 }} />
 

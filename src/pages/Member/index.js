@@ -239,6 +239,13 @@ export default function Member({ navigation, route }) {
                                                 justifyContent: 'center',
                                                 alignItems: 'center'
                                             }}>
+
+                                                <View style={{
+                                                    width: 12,
+                                                    height: 12,
+                                                    borderRadius: 8,
+                                                    backgroundColor: i.level == user.member ? Color.primary[900] : Color.white[900]
+                                                }}></View>
                                                 {/* <Icon color={i.level == user.member ? Color.primary[900] : Color.white[900]} type='ionicon' name='ellipse' size={14} /> */}
                                             </View>
                                         </View>

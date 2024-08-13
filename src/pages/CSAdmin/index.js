@@ -230,6 +230,7 @@ export default function CSAdmin({ navigation, route }) {
                                 flex: 1,
                                 paddingLeft: 44,
                                 height: 50,
+                                paddingBottom: 10,
                                 paddingHorizontal: 12,
                                 color: Color.blueGray[900],
                                 borderWidth: 1,
@@ -260,6 +261,7 @@ export default function CSAdmin({ navigation, route }) {
                                 borderTopWidth: 1,
                                 borderWidth: 1,
                                 borderBottomWidth: 1,
+
                                 borderColor: Color.blueGray[300],
                                 flexDirection: 'row',
                                 alignItems: 'center',
@@ -279,6 +281,7 @@ export default function CSAdmin({ navigation, route }) {
                                 paddingHorizontal: 12,
                                 color: Color.blueGray[900],
                                 borderWidth: 1,
+                                paddingBottom: 10,
                                 borderTopRightRadius: 8,
                                 borderBottomRightRadius: 8,
                                 borderColor: Color.blueGray[300]
@@ -379,7 +382,7 @@ export default function CSAdmin({ navigation, route }) {
                         })
                     }} />
                     <MyGap jarak={20} />
-                    <MyPicker iconname='user-rounded' label="Jenis Kelamin" onValueChange={x => {
+                    <MyPicker value={kirim.jenis_kelamin} iconname='user-rounded' label="Jenis Kelamin" onValueChange={x => {
                         setKirim({
                             ...kirim,
                             jenis_kelamin: x
@@ -423,6 +426,7 @@ export default function CSAdmin({ navigation, route }) {
                                 flex: 1,
                                 paddingLeft: 44,
                                 height: 50,
+                                paddingBottom: 10,
                                 paddingHorizontal: 12,
                                 color: Color.blueGray[900],
                                 borderWidth: 1,
@@ -509,7 +513,7 @@ export default function CSAdmin({ navigation, route }) {
                                             ...fonts.body3,
                                             color: Color.blueGray[900],
                                         }}>{item.nama_perawatan}</Text>
-                                        <MyIcon name={item.cek > 0 ? 'check-circle' : 'cosmetic'} size={30} color={Color.primary[900]} />
+                                        <MyIcon name={item.cek > 0 ? 'check-circle' : 'cosmetic'} size={30} color={item.cek > 0 ? Color.primary[900] : Color.blueGray[400]} />
                                         {/* <Icon type='ionicon' name={item.cek > 0 ? 'checkmark-circle' : 'checkmark-circle-outline'} color={item.cek > 0 ? Color.primary[900] : Color.blueGray[300]} /> */}
                                     </TouchableOpacity>
                                 )

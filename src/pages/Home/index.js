@@ -165,9 +165,9 @@ export default function Home({ navigation, route }) {
     setLoadingArtikel(true)
     axios.post(apiURL + 'artikel', {
       limit: 3,
-      tipe: 'Regular'
+      tipe: 'Trending'
     }).then(res => {
-
+      console.log('data artikel 3', res.data)
       setDataArtikel(res.data);
       setLoadingArtikel(false)
     })
@@ -709,7 +709,11 @@ export default function Home({ navigation, route }) {
 
           }} style={{
             padding: 10,
+            justifyContent: 'center',
+            alignItems: 'center'
           }}>
+
+            <MyIcon name='close-circle' size={60} color={Color.white[900]} />
             {/* <Icon type='ionicon' name='close-circle' size={60} color={Color.white[900]} /> */}
           </TouchableOpacity>
         </View>

@@ -11,6 +11,7 @@ import { maskJs, maskCurrency } from 'mask-js';
 import { useToast } from "react-native-toast-notifications";
 import Tiktok from '../../assets/Tiktok.svg'
 import axios from 'axios';
+import FastImage from 'react-native-fast-image';
 // import { Icon } from 'react-native-elements';
 export default function Bagikan({ navigation, route }) {
     return (
@@ -28,7 +29,10 @@ export default function Bagikan({ navigation, route }) {
                     onPress={() => Linking.openURL('https://www.instagram.com/youthologyclinic/')}
                     style={styles.btnSocial}
                 >
-                    <Icon type='ionicon' name='logo-instagram' color={Color.white[900]} size={20} />
+                    <FastImage resizeMode={FastImage.resizeMode.contain} style={{
+                        width: 100,
+                        height: 50,
+                    }} source={require('../../assets/ig.png')} />
                     <Text style={styles.textSocial}>
                         Instagram
                     </Text>
@@ -37,7 +41,10 @@ export default function Bagikan({ navigation, route }) {
                     onPress={() => Linking.openURL('https://www.tiktok.com/@youthologyclinic')}
                     style={styles.btnSocial}
                 >
-                    <Tiktok fill="white" width={20} height={20} />
+                    <FastImage resizeMode={FastImage.resizeMode.contain} style={{
+                        width: 100,
+                        height: 50,
+                    }} source={require('../../assets/tiktok.png')} />
                     <Text
                         style={styles.textSocial}>
                         Tiktok
@@ -49,6 +56,10 @@ export default function Bagikan({ navigation, route }) {
                     onPress={() => Linking.openURL('https://www.youtube.com/channel/UCuP37QIrgIgEaILL9zyT-fg')}
                     style={styles.btnSocial}
                 >
+                    <FastImage resizeMode={FastImage.resizeMode.contain} style={{
+                        width: 100,
+                        height: 50,
+                    }} source={require('../../assets/youtube.png')} />
                     {/* <Icon type='ionicon' name='logo-youtube' color={Color.white[900]} size={20} /> */}
                     <Text
                         style={styles.textSocial}>
@@ -60,7 +71,10 @@ export default function Bagikan({ navigation, route }) {
                     onPress={() => Linking.openURL('https://api.whatsapp.com/send/?phone=6287880006776')}
                     style={styles.btnSocial}
                 >
-                    {/* <Icon type='ionicon' name='logo-whatsapp' color={Color.white[900]} size={20} /> */}
+                    <FastImage resizeMode={FastImage.resizeMode.contain} style={{
+                        width: 100,
+                        height: 50,
+                    }} source={require('../../assets/wa.png')} />
                     <Text
                         style={styles.textSocial}>
                         Whatsapp
@@ -109,13 +123,15 @@ const styles = StyleSheet.create({
         marginVertical: 12,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Color.primary[900],
+        backgroundColor: Color.white[900],
+        borderWidth: 1,
+        borderColor: Color.blueGray[300],
         flexDirection: 'row',
 
     },
     textSocial: {
         left: 5,
         ...fonts.headline3,
-        color: Color.white[900]
+        color: Color.primary[900]
     }
 })
